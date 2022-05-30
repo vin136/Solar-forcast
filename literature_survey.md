@@ -36,6 +36,8 @@ Other details:
 Commentary:
 
 1.Can we penalize/use different loss function ?
+
 sol: This [NIPS(2019) PAPER](https://arxiv.org/abs/1909.09020)
 
+<img width="908" alt="Screen Shot 2022-05-30 at 10 38 55 AM" src="https://user-images.githubusercontent.com/21222766/171014922-db1049b5-0f24-4dee-98d9-fca205151b7b.png">
 
