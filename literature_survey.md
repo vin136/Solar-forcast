@@ -50,7 +50,7 @@ Esentially instead of making a point prediction at `t+n`, we also predict few in
 
 
 2. [Convolutional neural networks for intra-hour solar forecasting based on sky image sequences](https://www.sciencedirect.com/science/article/pii/S0306261921016639)
-(very recent, in 2022). [CODE](https://github.com/fengcong1992/SolarNet)
+(very recent, in 2022,successor to solarnet paper). [CODE](https://github.com/fengcong1992/SolarNet)
 
 **NOTE**: Authors published 3 papers with increasing sophistication, this is the last one.
 
