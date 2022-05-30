@@ -106,7 +106,9 @@ FS is computed by dividing the error
 indicator for a particular model (e.g., RMSE or MAE) with the corresponding error indicator of a reference model (usually being the
 season-adjusted persistence model). This fraction is then
 subtracted from 1, so that forecasts better than the reference model
-yield a positive skill.
+yield a positive skill. 
+
+**Note**:Did'nt cover much about `skyimager` based methods, infact called for one such study/review.
 
 Above papers seems to be the STATE OF ART in terms of sophistication. Below I revise some prelimnary ones (using DL/ML+skyimages):
 
