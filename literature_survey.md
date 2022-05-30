@@ -95,3 +95,30 @@ Verdict: Not great for cloudy weather conditions.
 
 One good way is to provide uncertainty on these forecasts, hopefully they will identify these weather conditions apriori.
 
+3. [History and trends in solar irradiance and PV power forecasting: A
+preliminary assessment and review using text mining](https://www.sciencedirect.com/science/article/pii/S0038092X17310022)
+
+A most review paper(2018) analyzing 100's of papers in the space.Here we consider the relevant sections : skyimager,ML based approaches for solar forecasting. Not too much relevant work. Some useful points
+
+- Pointed out how MAE/MSE isn't the best metric for practical use.
+- A slightly accepted metric is FS(forecast skill):
+FS is computed by dividing the error
+indicator for a particular model (e.g., RMSE or MAE) with the corresponding error indicator of a reference model (usually being the
+season-adjusted persistence model). This fraction is then
+subtracted from 1, so that forecasts better than the reference model
+yield a positive skill.
+
+Above papers seems to be the STATE OF ART in terms of sophistication. Below I revise some prelimnary ones (using DL/ML+skyimages):
+
+1. [KloudNet: Deep Learning for Sky Image Analysis and Irradiance Forecasting](https://link.springer.com/chapter/10.1007/978-3-030-12939-2_37)
+
+continuous irradiance was converted into
+binary values using a clear sky index threshold - classification problem. Only classification acc are compared at different sites with baseline methods.
+
+2. [3D-CNN-based feature extraction of ground-based cloud images for direct normal irradiance prediction](https://www.sciencedirect.com/science/article/pii/S0038092X19301082)
+
+Extracts features with 3D-CNN and combines(regression) with other features. forecast skill of 17.06% for 10-minute ahead. Trained a cloud-classification model.(The clear-sky index is defined as the ratio between the measured DNI and the estimated theoretical clear-sky DNI)
+
+
+
+
