@@ -93,3 +93,5 @@ Verdict: Not great for cloudy weather conditions.
 
 <img width="633" alt="Screen Shot 2022-05-30 at 1 13 54 PM" src="https://user-images.githubusercontent.com/21222766/171037023-c1579502-98b2-47f0-8d2a-1d28da768c96.png">
 
+One good way is to provide uncertainty on these forecasts, hopefully they will identify these weather conditions apriori.
+
