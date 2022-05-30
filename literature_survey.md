@@ -1,6 +1,6 @@
 # Papers Considered
 
-[Benchmarking of deep learning irradiance forecasting models from sky images – An in-depth analysis](https://www.sciencedirect.com/science/article/pii/S0038092X21004266?casa_token=yOGIjVJ-DSwAAAAA:uUGNdXJfqqvG8XjrCb9yqUVm3cpn7YzCZSNetHOa6W1QwCxZCGSAFEipVr99hTMebhJHXVgyeIs)
+1. [Benchmarking of deep learning irradiance forecasting models from sky images – An in-depth analysis](https://www.sciencedirect.com/science/article/pii/S0038092X21004266?casa_token=yOGIjVJ-DSwAAAAA:uUGNdXJfqqvG8XjrCb9yqUVm3cpn7YzCZSNetHOa6W1QwCxZCGSAFEipVr99hTMebhJHXVgyeIs)
 
 
 Data:
@@ -47,4 +47,49 @@ sol: This [NIPS(2019) PAPER](https://arxiv.org/abs/1909.09020), [code](https://g
 <img width="908" alt="Screen Shot 2022-05-30 at 10 38 55 AM" src="https://user-images.githubusercontent.com/21222766/171014922-db1049b5-0f24-4dee-98d9-fca205151b7b.png">
 
 Esentially instead of making a point prediction at `t+n`, we also predict few intermediate values. Using the path values we measure/quantify the error with ground truth - a. shape mismatch b. time-mismatch(lags are penalized). Can be implemented, though a bit non-trivial.
+
+
+2. [Convolutional neural networks for intra-hour solar forecasting based on sky image sequences](https://www.sciencedirect.com/science/article/pii/S0306261921016639)
+(very recent, in 2022). [CODE](https://github.com/fengcong1992/SolarNet)
+
+**NOTE**: Authors published 3 papers with increasing sophistication, this is the last one.
+
+Dataset:
+- the National Renewable Energy Laboratory
+(NREL) solar radiation research laboratory (SRRL) dataset. The SRRL
+dataset is one of the largest publicly available datasets with both
+total sky images and meteorological measurements. (can get from OpenSolar package)
+- There are 155,644 data points after filtering out nighttime data
+points and aligning images with numerical data. To ensure the success-
+ful training and convincing verification, six years (i.e., from 2012-01-01
+to 2017-12-31).
+
+- sky images every 10-min.
+- Numerical parameters include tem-
+perature, relative humidity, wind speed, GHI, DNI, diffuse horizontal
+irradiance (DHI), and atmospheric pressure.  
+
+Target parametr:
+𝐂𝐒𝐈 = 𝐆𝐇𝐈/𝐂𝐒𝐆𝐇𝐈
+
+Models:
+
+1.SCNN (vggnet based cnn)
+2. 3DCNN
+And a lot of baseline models (random forests etc), ANN's.
+
+They have built six independent models span 1-hour with a 10-min lead time, a 10-min
+resolution, and a 10-min update rate. Each forecasting model takes a
+sky image sequence as its input and predicts a single future GHI value
+at each forecasting issue time.
+
+Results:
+They did extensive hyperparemeter tuning. Most important are
+
+a. image look back/lengths : i.e., $2^0$, $2^1$,$2^2$,$2^3$. (10 min resolution) -> 2 images as best.
+b. similarly for resolution : medium res is best (128*128)
+
+Verdict: Not great for cloudy weather conditions.
+
+<img width="633" alt="Screen Shot 2022-05-30 at 1 13 54 PM" src="https://user-images.githubusercontent.com/21222766/171037023-c1579502-98b2-47f0-8d2a-1d28da768c96.png">
 
