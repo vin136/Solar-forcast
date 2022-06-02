@@ -23,9 +23,16 @@ Studied various architectures
 4. CONVLSTM
 
 Conclusions:
-1. Using LSTM(temporal info) inc performance(very slightly) but increasing the data gives best return.
+1. Using LSTM(or complex architectures) inc performance(very slightly)  but increasing the data gives best return.
 2. forecast methods are always late relative to the ground truth. **models tend to behave like a very smart persistence model, avoiding large errors at the cost of missing peaks and having regular time delays.**
 
+Useful Points:
+
+1. To assess the model’s performance, they used forecast skill (FS) metric based on the smart persistence model (SPM).
+2. Two useful metrics aside from MSE. 
+
+Ramp Metric : Identify sudden changes. Now measure the average slope difference between the forecast and ground truth.
+Temporal Distortion Index: quantify temporal misalignment between two time series
 
 
 Other details:
