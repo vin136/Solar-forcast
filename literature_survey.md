@@ -5,7 +5,7 @@
 
 Data:
 
-Combines auxillary data: (GHI(t)(global horizontal irradiance), SZA(t)(solar zenith angle), cos(SZA(t)), sin(SZA(t)), SAA(t)(azimuthal angle), cos(SAA(t)), sin(SAA(t)).) with the SkyImager
+Combines auxillary data( SIRTA laboratory,three years from 2017 to 2019.): (GHI(t)(global horizontal irradiance), SZA(t)(solar zenith angle), cos(SZA(t)), sin(SZA(t)), SAA(t)(azimuthal angle), cos(SAA(t)), sin(SAA(t)).) with the SkyImager. 
 
 Loss:
 
@@ -15,6 +15,7 @@ Model:
 
 - predict 10 min futer irradiance
 - the CNN model was given five pairs of images, long and short exposures, taken every two minutes from time t to t − 8 min.
+- Architecture: CNN for image, followed by concatenating the auxillary features.
 
 Studied various architectures 
 1. CNN
@@ -26,6 +27,8 @@ Conclusions:
 1. Using LSTM(or complex architectures) inc performance(very slightly)  but increasing the data gives best return.
 2. forecast methods are always late relative to the ground truth. **models tend to behave like a very smart persistence model, avoiding large errors at the cost of missing peaks and having regular time delays.**
 
+<img width="659" alt="Screen Shot 2022-06-02 at 9 59 44 AM" src="https://user-images.githubusercontent.com/21222766/171646618-4f9b966a-0f4e-47d9-932e-c2b5fad7b6a8.png">
+
 Useful Points:
 
 1. To assess the model’s performance, they used forecast skill (FS) metric based on the smart persistence model (SPM).
@@ -34,14 +37,33 @@ Useful Points:
 Ramp Metric : Identify sudden changes. Now measure the average slope difference between the forecast and ground truth.
 Temporal Distortion Index: quantify temporal misalignment between two time series
 
+TDI: The TDI is defined as the area between the optimal(DTW) and the identity path normalised by the area below the latter, which corresponds to the percentage of temporal distortion relative to the maximal distortion.
+
 
 Other details:
 
 - The training set was then generated from 35,000 samples randomly chosen from the 320 available days of 2017 (January to November), the validation set from 10,000 samples from the 320 available days of 2018 (Mid-February to December with 9 consecutive missing days in September) and the test set from 10,000 samples from the 363 available days of 2019 (January to November).
 - Images were cropped and downscaled through bilinear filtering from  pixels to a resolution of 128*128.
 
+
+**Comments**
+The tendency of reacting to past observations rather than actively anticipating future events is already recognized and people did some things. Some work:
+
+1. [ECLIPSE : Envisioning Cloud Induced Perturbations in Solar Energy](https://arxiv.org/abs/2104.12419), got [code](https://github.com/tcapelle/eclipse_pytorch)
+
+Idea: A spatio-temporal neural network architecture that models cloud motion from sky images to not only predict future irradiance levels but also segmented images, which provide richer information on the local irradiance map. They got less TDI. But they have lot of components.
+
+<img width="846" alt="Screen Shot 2022-06-02 at 10 12 21 AM" src="https://user-images.githubusercontent.com/21222766/171649233-f4a74812-dc34-41e3-93c7-e760c4006bf4.png">
+
+- recursively predict future states
+that are then regressed to future irradiance values (Figure 2).
+Predicting a sequence of future values instead of a single
+value allows our model to learn a representation that can
+detect rapid changes in solar flux, due to cloud occlusion
+for instance.
+
 **Aside**
-Key Problem: Not being able to use the same metric(non-differentiable) for the loss.
+2. Key Problem: Not being able to use the same metric(non-differentiable) for the loss.(NO one did this to my knowledge)
 
 For assessing the detection of ramps in wind and solar energy forecasting, specific algorithms were designed:  for shape, the ramp score based on a piecewise linear approximation of the derivatives of time series; for temporal error estimation, the Temporal Distortion Index (TDI). But they cant' be differentiated.
 
@@ -53,7 +75,7 @@ sol: This [NIPS(2019) PAPER](https://arxiv.org/abs/1909.09020), [code](https://g
 
 <img width="908" alt="Screen Shot 2022-05-30 at 10 38 55 AM" src="https://user-images.githubusercontent.com/21222766/171014922-db1049b5-0f24-4dee-98d9-fca205151b7b.png">
 
-Esentially instead of making a point prediction at `t+n`, we also predict few intermediate values. Using the path values we measure/quantify the error with ground truth - a. shape mismatch b. time-mismatch(lags are penalized). Can be implemented, though a bit non-trivial.
+Esentially instead of making a point prediction at `t+n`, we also predict few intermediate values. Using the path values we measure/quantify the error with ground truth - a. shape mismatch b. time-mismatch(lags are penalized). Can be implemented, though a bit non-trivial.(backprop is hard,custom implementation)
 
 
 2. [Convolutional neural networks for intra-hour solar forecasting based on sky image sequences](https://www.sciencedirect.com/science/article/pii/S0306261921016639)
@@ -129,5 +151,7 @@ binary values using a clear sky index threshold - classification problem. Only c
 Extracts features with 3D-CNN and combines(regression) with other features. forecast skill of 17.06% for 10-minute ahead. Trained a cloud-classification model.(The clear-sky index is defined as the ratio between the measured DNI and the estimated theoretical clear-sky DNI)
 
 
+## Other Relevant/classic papers
 
+1. [Introducing the Temporal Distortion Index to perform a bidimensional analysis of renewable energy forecast](https://www.sciencedirect.com/science/article/pii/S0360544215014619)
 
