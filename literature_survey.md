@@ -47,7 +47,7 @@ Other details:
 
 
 **Comments**
-The tendency of reacting to past observations rather than actively anticipating future events is already recognized and people did some things. Some work:
+The tendency of reacting to past observations rather than actively anticipating future events is already recognized and people did some things.(reactive than anticipatory.) Some work:
 
 1. [ECLIPSE : Envisioning Cloud Induced Perturbations in Solar Energy](https://arxiv.org/abs/2104.12419), got [code](https://github.com/tcapelle/eclipse_pytorch)
 
