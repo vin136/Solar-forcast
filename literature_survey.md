@@ -174,3 +174,8 @@ channel of each image is used for the image stacking.
 forecast horizons H from 5 to 9 min to provide 1-min forecast
 resolution (R1min) for the control criteria. The forecasts are updated every 5 min (U 5min).
 
+4. [A Deep Physical Model for Solar Irradiance Forecasting with Fisheye Images](https://openaccess.thecvf.com/content_CVPRW_2020/papers/w38/Le_Guen_A_Deep_Physical_Model_for_Solar_Irradiance_Forecasting_With_Fisheye_CVPRW_2020_paper.pdf)
+
+Deep learning + partial diff equations. Didn't read but has `high forecast skill score.`
+
+
