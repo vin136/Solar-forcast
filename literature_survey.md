@@ -161,6 +161,7 @@ Extracts features with 3D-CNN and combines(regression) with other features. fore
 2. [Convolutional Neural Networks applied to sky images for
 short-term solar irradiance forecasting](https://arxiv.org/pdf/2005.11246.pdf): Very prelimnary. Used Image+auxillary data.
 3.[Deep Learning Based Multistep Solar Forecasting for PV Ramp-Rate Control Using Sky Images](https://ieeexplore.ieee.org/abstract/document/9072298)
+
 Gives a multistep forecast. Takes in multiple images + auxillary data.
 
 Data: The Solar Radiation Research Laboratory of the National
