@@ -182,7 +182,9 @@ resolution (R1min) for the control criteria. The forecasts are updated every 5 m
 4. [A Deep Physical Model for Solar Irradiance Forecasting with Fisheye Images](https://openaccess.thecvf.com/content_CVPRW_2020/papers/w38/Le_Guen_A_Deep_Physical_Model_for_Solar_Irradiance_Forecasting_With_Fisheye_CVPRW_2020_paper.pdf) (**CVPR paper**)
 
 Deep learning + partial diff equations. (Didn't read). But has `high forecast skill score.`(esentially learns the coefficients of the PDE)
-
+5.[Convolutional LSTM Network: A Machine Learning
+Approach for Precipitation Nowcasting](https://arxiv.org/pdf/1506.04214.pdf)
+Tries to predict rainfall but this is the most cited paper and also by a current Rutgers Professor Hao Wang. Uses ConvLSTM.
 
 --------
 Notes:
