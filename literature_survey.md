@@ -183,7 +183,7 @@ resolution (R1min) for the control criteria. The forecasts are updated every 5 m
 
 Deep learning + partial diff equations. (Didn't read). But has `high forecast skill score.`(esentially learns the coefficients of the PDE)
 5.[Convolutional LSTM Network: A Machine Learning
-Approach for Precipitation Nowcasting](https://arxiv.org/pdf/1506.04214.pdf)
+Approach for Precipitation Nowcasting](https://arxiv.org/pdf/1506.04214.pdf)(NIPS)
 Tries to predict rainfall but this is the most cited paper and also by a current Rutgers Professor Hao Wang. Uses ConvLSTM.
 
 --------
