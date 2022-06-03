@@ -64,7 +64,9 @@ for instance.
 
 **comment**
 
-Seems overly complex and moreover for segmentation they used non-ml algo(Hybrid Thresholding Algorithm) to generate ground truth labels. Typically,more data would compensate for the need of auxillary loss.
+- Seems overly complex and moreover for segmentation they used non-ml algo(Hybrid Thresholding Algorithm) to generate ground truth labels. Typically,more data would compensate for the need of auxillary loss.
+
+- `Pre-train and finetune`: Popular paradigm in modern deep learning. Maybe we can make a pre-trained net(say on NREL dataset) and present the effect of pre-training.
 
 **Aside**
 2. Key Problem: Not being able to use the same metric(non-differentiable) for the loss.(NO one did this to my knowledge)
@@ -113,7 +115,7 @@ And a lot of baseline models (random forests etc), ANN's.
 
 They have built six independent models span 1-hour with a 10-min lead time, a 10-min
 resolution, and a 10-min update rate. Each forecasting model takes a
-sky image sequence as its input and predicts a single future GHI value
+**sky image sequence** as its input and predicts a single future GHI value
 at each forecasting issue time.
 
 Results:
@@ -179,4 +181,14 @@ resolution (R1min) for the control criteria. The forecasts are updated every 5 m
 
 Deep learning + partial diff equations. (Didn't read). But has `high forecast skill score.`(esentially learns the coefficients of the PDE)
 
+
+--------
+Notes:
+
+- Aside from the generic loss/metric(MSE/MAE) track the other domain specific params like TDI,RI.
+- Once trained give slice based metrics.(how the model is behaving at various irradiance levels)-> this will give us ideas to improve the model.
+
+Questions:
+
+- It seems everyone is using a public dataset(reproducability), if we are using our dataset we either got to implement some of the paper's model and check on our dataset (to benchmark and say our's is better etc) or ?
 
