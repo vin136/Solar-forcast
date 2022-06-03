@@ -154,4 +154,19 @@ Extracts features with 3D-CNN and combines(regression) with other features. fore
 ## Other Relevant/classic papers
 
 1. [Introducing the Temporal Distortion Index to perform a bidimensional analysis of renewable energy forecast](https://www.sciencedirect.com/science/article/pii/S0360544215014619)
+2. [Convolutional Neural Networks applied to sky images for
+short-term solar irradiance forecasting](https://arxiv.org/pdf/2005.11246.pdf): Very prelimnary. Used Image+auxillary data.
+3.[Deep Learning Based Multistep Solar Forecasting for PV Ramp-Rate Control Using Sky Images](https://ieeexplore.ieee.org/abstract/document/9072298)
+Gives a multistep forecast. Takes in multiple images + auxillary data.
+
+Data: The Solar Radiation Research Laboratory of the National
+Renewable Energy Laboratory (NREL). 1 year data at 10min resoultion.
+They just threw classic models (RESNET,VGG ETC)(used pretrained models)
+
+Some quirks:
+-  They stacked and compared for each channel. Xb has the worst forecasting accuracy. As a result, the red
+channel of each image is used for the image stacking.
+- The MSF model integrates a linear combination of five ResNet18 models that are individually trained on datasets of different
+forecast horizons H from 5 to 9 min to provide 1-min forecast
+resolution (R1min) for the control criteria. The forecasts are updated every 5 min (U 5min).
 
