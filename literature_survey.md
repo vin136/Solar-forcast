@@ -62,6 +62,10 @@ value allows our model to learn a representation that can
 detect rapid changes in solar flux, due to cloud occlusion
 for instance.
 
+**comment**
+
+Seems overly complex and moreover for segmentation they used non-ml algo(Hybrid Thresholding Algorithm) to generate ground truth labels. Typically,more data would compensate for the need of auxillary loss.
+
 **Aside**
 2. Key Problem: Not being able to use the same metric(non-differentiable) for the loss.(NO one did this to my knowledge)
 
