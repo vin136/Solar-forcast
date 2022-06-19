@@ -1,0 +1,34 @@
+{
+    "os": "Linux-5.4.0-110-generic-x86_64-with-glibc2.17",
+    "python": "3.8.12",
+    "heartbeatAt": "2022-06-16T20:02:29.886350",
+    "startedAt": "2022-06-16T20:02:12.400540",
+    "docker": null,
+    "gpu": "NVIDIA RTX A4000",
+    "gpu_count": 4,
+    "cpu_count": 80,
+    "cuda": null,
+    "args": [
+        "--ip=127.0.0.1",
+        "--stdin=9016",
+        "--control=9014",
+        "--hb=9013",
+        "--Session.signature_scheme=\"hmac-sha256\"",
+        "--Session.key=b\"54dc5b0d-1b0d-4398-a598-43ba0b0283e1\"",
+        "--shell=9015",
+        "--transport=\"tcp\"",
+        "--iopub=9017",
+        "--f=/tmp/tmp-6591488YTUmIqy54bo.json"
+    ],
+    "state": "running",
+    "program": "<python with no main file>",
+    "git": {
+        "remote": "git@github.com:vin136/Solar-forcast.git",
+        "commit": "515ffd5807577fc4a961da8643c3bd84f55247ca"
+    },
+    "email": "vinnuvinay008@gmail.com",
+    "root": "/common/home/vk405/Projects/EnergyLab/Solar-forcast",
+    "host": "ilab1.cs.rutgers.edu",
+    "username": "vk405",
+    "executable": "/common/home/vk405/miniconda3/envs/Crossmdl/bin/python"
+}

@@ -1,0 +1,78 @@
+wandb_version: 1
+
+_wandb:
+  desc: null
+  value:
+    cli_version: 0.12.9
+    framework: huggingface
+    huggingface_version: 4.12.2
+    is_jupyter_run: true
+    is_kaggle_kernel: false
+    python_version: 3.8.12
+    start_time: 1655410026
+    t:
+      1:
+      - 1
+      - 2
+      - 3
+      - 5
+      - 9
+      - 11
+      - 12
+      3:
+      - 16
+      4: 3.8.12
+      5: 0.12.9
+      6: 4.12.2
+      8:
+      - 1
+      - 5
+artifacts_loc:
+  desc: null
+  value: /common/home/vk405/Projects/EnergyLab/Solar-forcast/artifacts/
+batch_size:
+  desc: null
+  value: 64
+cbs:
+  desc: null
+  value:
+  - checkpoint
+checkpoint:
+  desc: null
+  value:
+    mode: min
+    monitor: val_loss
+    save_top_k: 5
+data_dir:
+  desc: null
+  value: /common/home/vk405/Projects/EnergyLab/Solar-forcast/Data/
+dropoutp:
+  desc: null
+  value: 0.2
+framecnt:
+  desc: null
+  value: 2
+image_dir:
+  desc: null
+  value: /common/users/vk405/EnergyLab/Data/ProcData/
+loggers:
+  desc: null
+  value:
+  - csv
+lr:
+  desc: null
+  value: 2.5e-05
+mode:
+  desc: null
+  value: train
+seed:
+  desc: null
+  value: 0
+trainer:
+  desc: null
+  value:
+    log_every_n_steps: 1000
+    max_epochs: 30
+version:
+  desc: null
+  value: trail

@@ -1,0 +1,150 @@
+wandb_version: 1
+
+_wandb:
+  desc: null
+  value:
+    cli_version: 0.12.9
+    framework: huggingface
+    huggingface_version: 4.12.2
+    is_jupyter_run: true
+    is_kaggle_kernel: false
+    m:
+    - 1: trainer/global_step
+      6:
+      - 3
+    python_version: 3.8.12
+    start_time: 1655409881
+    t:
+      1:
+      - 1
+      - 2
+      - 3
+      - 5
+      - 9
+      - 11
+      - 12
+      2:
+      - 1
+      - 2
+      - 3
+      - 5
+      - 9
+      - 11
+      - 12
+      3:
+      - 2
+      - 7
+      - 16
+      4: 3.8.12
+      5: 0.12.9
+      6: 4.12.2
+      8:
+      - 1
+      - 5
+artifacts_loc:
+  desc: null
+  value: /common/home/vk405/Projects/EnergyLab/Solar-forcast/artifacts/
+batch_size:
+  desc: null
+  value: 64
+cbs:
+  desc: null
+  value:
+  - checkpoint
+checkpoint:
+  desc: null
+  value:
+    mode: min
+    monitor: val_loss
+    save_top_k: 5
+data_dir:
+  desc: null
+  value: /common/home/vk405/Projects/EnergyLab/Solar-forcast/Data/
+dropoutp:
+  desc: null
+  value: 0.2
+dset:
+  desc: null
+  value: None
+framecnt:
+  desc: null
+  value: 2
+hparams/artifacts_loc:
+  desc: null
+  value: /common/home/vk405/Projects/EnergyLab/Solar-forcast/artifacts/
+hparams/batch_size:
+  desc: null
+  value: 64
+hparams/cbs:
+  desc: null
+  value:
+  - checkpoint
+hparams/checkpoint/mode:
+  desc: null
+  value: min
+hparams/checkpoint/monitor:
+  desc: null
+  value: val_loss
+hparams/checkpoint/save_top_k:
+  desc: null
+  value: 5
+hparams/data_dir:
+  desc: null
+  value: /common/home/vk405/Projects/EnergyLab/Solar-forcast/Data/
+hparams/dropoutp:
+  desc: null
+  value: 0.2
+hparams/framecnt:
+  desc: null
+  value: 2
+hparams/image_dir:
+  desc: null
+  value: /common/users/vk405/EnergyLab/Data/ProcData/
+hparams/loggers:
+  desc: null
+  value:
+  - csv
+  - wandb
+hparams/lr:
+  desc: null
+  value: 2.5e-05
+hparams/mode:
+  desc: null
+  value: train
+hparams/seed:
+  desc: null
+  value: 0
+hparams/trainer/log_every_n_steps:
+  desc: null
+  value: 1000
+hparams/trainer/max_epochs:
+  desc: null
+  value: 30
+hparams/version:
+  desc: null
+  value: trail
+image_dir:
+  desc: null
+  value: /common/users/vk405/EnergyLab/Data/ProcData/
+loggers:
+  desc: null
+  value:
+  - csv
+  - wandb
+lr:
+  desc: null
+  value: 2.5e-05
+mode:
+  desc: null
+  value: train
+seed:
+  desc: null
+  value: 0
+trainer:
+  desc: null
+  value:
+    log_every_n_steps: 1000
+    max_epochs: 30
+version:
+  desc: null
+  value: trail
