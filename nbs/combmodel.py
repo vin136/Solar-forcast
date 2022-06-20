@@ -299,7 +299,7 @@ def run_model(cfg):
         hparams = cfg    
         net = CombModel(hparams)
         trainer = pl.Trainer(
-            logger=logger_list,callbacks=cbs, gpus=[2],deterministic=True, **cfg.trainer
+            logger=logger_list,callbacks=cbs, gpus=[3],deterministic=True, **cfg.trainer
         )
         trainer.fit(net,train_dataloaders=train_loader,val_dataloaders=val_loader)
         return trainer
