@@ -159,7 +159,7 @@ class LstmModel(pl.LightningModule):
         #for training
         #for training
         x,y = batch
-        y_hat = torch.squeeze(self.forward(x.float(),y.float()))
+        y_hat = torch.squeeze(self.forward(x.float()))
 
 
         loss = F.mse_loss(y_hat,y.float())
@@ -170,7 +170,7 @@ class LstmModel(pl.LightningModule):
     def validation_step(self,batch,batch_idx):
         #for training
         x,y = batch
-        y_hat = torch.squeeze(self.forward(x.float(),y.float()))
+        y_hat = torch.squeeze(self.forward(x.float()))
 
 
         loss = F.mse_loss(y_hat,y.float())
