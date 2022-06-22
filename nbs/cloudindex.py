@@ -219,7 +219,7 @@ def run_model(cfg):
         hparams = cfg    
         net = LstmModel(hparams.lr,hparams.num_classes, hparams.input_size, hparams.hidden_size, hparams.num_layers,hparams.seq_length)
         trainer = pl.Trainer(
-            logger=logger_list,callbacks=cbs, gpus=[0,1,2,3],deterministic=True, **cfg.trainer
+            logger=logger_list,callbacks=cbs, gpus=[0],deterministic=True, **cfg.trainer
         )
         trainer.fit(net,train_dataloaders=train_loader,val_dataloaders=val_loader)
         return trainer
