@@ -242,7 +242,7 @@ if __name__ == '__main__':
             seed = 0,
             cbs = ["checkpoint"],
             trainer = {'log_every_n_steps': 50,
-            'max_epochs': 40},
+            'max_epochs': 60},
             checkpoint = {"save_top_k": 5,
             "monitor": "val_loss","mode":"min"},
             lr = 1.5e-3,
