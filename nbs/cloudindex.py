@@ -63,11 +63,12 @@ class LSTM(nn.Module):
         self.fc = nn.Linear(hidden_size, num_classes)
 
     def forward(self, x):
+        d_no = x.get_device()
         h_0 = Variable(torch.zeros(
-            self.num_layers, x.size(0), self.hidden_size))
+            self.num_layers, x.size(0), self.hidden_size,device=f'cuda:{d_no}'))
         
         c_0 = Variable(torch.zeros(
-            self.num_layers, x.size(0), self.hidden_size))
+            self.num_layers, x.size(0), self.hidden_size,device=f'cuda:{d_no}'))
         
         # Propagate input through LSTM
         ula, (h_out, _) = self.lstm(x, (h_0, c_0))
