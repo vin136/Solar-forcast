@@ -121,7 +121,7 @@ class Dset(Dataset):
         return len(self.x)
 
     def __getitem__(self,ind):
-        return x[ind],y[ind]
+        return self.x[ind],self.y[ind]
 
     def sliding_windows(self,data, seq_length):
         x = []
