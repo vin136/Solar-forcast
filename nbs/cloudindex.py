@@ -163,7 +163,7 @@ class LstmModel(pl.LightningModule):
         y_hat = torch.squeeze(self.forward(x.float()))
 
 
-        loss = F.mse_loss(y_hat,y.float())
+        loss = F.l1_loss(y_hat,y.float())
         self.log("train_loss",loss,on_step=True)
         return loss
 
@@ -174,7 +174,7 @@ class LstmModel(pl.LightningModule):
         y_hat = torch.squeeze(self.forward(x.float()))
 
 
-        loss = F.mse_loss(y_hat,y.float())
+        loss = F.l1_loss(y_hat,y.float())
         self.log("val_loss",loss,on_step=False, on_epoch=True)
         return loss
     
@@ -233,7 +233,7 @@ def run_model(cfg):
 if __name__ == '__main__':
     from argparse import Namespace
     cfg = Namespace(
-            version = 'lstm',
+            version = 'lstm_mae',
             artifacts_loc = "/common/home/vk405/Projects/EnergyLab/Solar-forcast/artifacts/",
             data_dir = "/common/home/vk405/Projects/EnergyLab/Solar-forcast/Data/",
             image_dir = "/common/users/vk405/EnergyLab/Data/ProcData/",
