@@ -64,11 +64,19 @@ class LSTM(nn.Module):
 
     def forward(self, x):
         d_no = x.get_device()
-        h_0 = Variable(torch.zeros(
-            self.num_layers, x.size(0), self.hidden_size,device=f'cuda:{d_no}'))
-        
-        c_0 = Variable(torch.zeros(
-            self.num_layers, x.size(0), self.hidden_size,device=f'cuda:{d_no}'))
+        if d_no != -1:
+            h_0 = Variable(torch.zeros(
+                self.num_layers, x.size(0), self.hidden_size,device=f'cuda:{d_no}'))
+            
+            c_0 = Variable(torch.zeros(
+                self.num_layers, x.size(0), self.hidden_size,device=f'cuda:{d_no}'))
+        else:
+            h_0 = Variable(torch.zeros(
+                self.num_layers, x.size(0), self.hidden_size))
+            
+            c_0 = Variable(torch.zeros(
+                self.num_layers, x.size(0), self.hidden_size))
+
         
         # Propagate input through LSTM
         ula, (h_out, _) = self.lstm(x, (h_0, c_0))
@@ -231,6 +239,17 @@ def run_model(cfg):
         pass
 
 
+def infer(model,loader):
+    preds_lis = []
+    truelabels = []
+    with torch.no_grad():
+        for x,y in tqdm(test_loader):
+            preds = model(x.float())
+            preds_lis.append(preds.squeeze().cpu().numpy())
+            truelabels.append(y.cpu().numpy())
+    return np.concatenate(preds_lis,axis=0),np.concatenate(truelabels,axis=0)
+
+
 if __name__ == '__main__':
     from argparse import Namespace
     cfg = Namespace(
@@ -253,4 +272,14 @@ if __name__ == '__main__':
             num_layers = 1,
             num_classes = 1,
             seq_length = 10)
-    run_model(cfg)
+    test_dset = Dset(split= 'test')
+    #trained model
+    hparams = cfg
+    net = LstmModel(hparams)
+    weight_loc = '/common/home/vk405/Projects/EnergyLab/Solar-forcast/artifacts/ckpts/lstm_mae/epoch=36-val_loss=0.04.ckpt'
+    trnd_net = net.load_from_checkpoint(weight_loc)
+    test_loader = DataLoader(test_dset,\
+            batch_size=64,shuffle=False,num_workers=4,pin_memory=True)
+    p,g = infer(trnd_net,test_loader)
+    infered_vals = {'pred':p,'ground':g}
+    pd.DataFrame(infered_vals).to_csv(data_dir/'infered_vals_lstm.csv',index=False)
