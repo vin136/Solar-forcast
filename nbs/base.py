@@ -15,6 +15,8 @@ import pytorch_lightning as pl
 from pytorch_lightning.loggers import CSVLogger
 from sklearn.preprocessing import MinMaxScaler
 from tqdm import tqdm
+from torch.autograd import Variable
+
 
 import wandb
 import logging
@@ -147,6 +149,89 @@ class VggModel(pl.LightningModule):
 
 
 
+
+#lstm model
+class LSTM(nn.Module):
+
+    def __init__(self, num_classes, input_size, hidden_size, num_layers,seq_length):
+        super(LSTM, self).__init__()
+        
+        self.num_classes = num_classes
+        self.num_layers = num_layers
+        self.input_size = input_size
+        self.hidden_size = hidden_size
+        self.seq_length = seq_length
+        
+        self.lstm = nn.LSTM(input_size=input_size, hidden_size=hidden_size,
+                            num_layers=num_layers, batch_first=True)
+        
+        self.fc = nn.Linear(hidden_size, num_classes)
+
+    def forward(self, x):
+        d_no = x.get_device()
+        h_0 = Variable(torch.zeros(
+            self.num_layers, x.size(0), self.hidden_size,device=f'cuda:{d_no}'))
+        
+        c_0 = Variable(torch.zeros(
+            self.num_layers, x.size(0), self.hidden_size,device=f'cuda:{d_no}'))
+        
+        # Propagate input through LSTM
+        ula, (h_out, _) = self.lstm(x, (h_0, c_0))
+        
+        h_out = h_out.view(-1, self.hidden_size)
+        
+        out = self.fc(h_out)
+        
+        return out
+
+
+
+class LstmModel(pl.LightningModule):
+    def __init__(self,hparams):
+        super().__init__()
+        self.save_hyperparameters()
+        self.lstm = LSTM(hparams.num_classes, hparams.input_size, hparams.hidden_size, hparams.num_layers,hparams.seq_length)
+        self.lr = hparams.lr
+        
+
+        
+
+    def forward(self,x):
+        #keep this for inference
+        outputs = self.lstm(x.float())
+        return outputs
+
+    
+    def training_step(self,batch,batch_idx):
+        #for training
+        #for training
+        x,y = batch
+        y_hat = torch.squeeze(self.forward(x.float()))
+
+
+        loss = F.l1_loss(y_hat,y.float())
+        self.log("train_loss",loss,on_step=True)
+        return loss
+
+    
+    def validation_step(self,batch,batch_idx):
+        #for training
+        x,y = batch
+        y_hat = torch.squeeze(self.forward(x.float()))
+
+
+        loss = F.l1_loss(y_hat,y.float())
+        self.log("val_loss",loss,on_step=False, on_epoch=True)
+        return loss
+    
+    def configure_optimizers(self):
+        lr = self.lr
+        #lr=0.00001, beta_1=0.9, beta_2=0.999, decay=0.0, amsgrad=False
+        optimizer = torch.optim.Adam(self.parameters(), lr=lr,betas=(0.9,0.999),amsgrad=False)
+        return optimizer
+
+
+
 # DataSet
 
 #dset
@@ -178,7 +263,7 @@ class Dset(Dataset):
         #set an upper-threshold.
         self.df.loc[self.df.index[self.df['10ma_tgt']>=thresh],'10ma_tgt'] = thresh
         #self.df[self.df['Target']>=1300.0]['Target'] = 1300.0
-        rescaled = self.scalar.transform(self.df['Target'].values.reshape(-1,1))
+        rescaled = self.scalar.transform(self.df['10ma_tgt'].values.reshape(-1,1))
         self.df['10ma_tgt'] = np.squeeze(rescaled)
         
         
@@ -198,6 +283,9 @@ class Dset(Dataset):
         return (np.concatenate(proc_arrays,-1).reshape(-1,256,256))/255.0,target
 
 
+
+
+#dataset-lstm
 
 
 
