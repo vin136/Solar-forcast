@@ -46,7 +46,7 @@ image_dir = Path('/common/users/vk405/EnergyLab/Data')
 proc_data_dir = Path('/common/users/vk405/EnergyLab/Data/ProcData')
 df = pd.read_csv(f'{data_dir}/tgtimgs.csv')
 
-class Dset(Dataset):
+class JDset(Dataset):
     def __init__(self,split= 'train',data_dir='/common/home/vk405/Projects/EnergyLab/Solar-forcast/Data/',
     image_dir='/common/users/vk405/EnergyLab/Data/ProcData',seq_length=10):
         self.split = split
@@ -56,7 +56,13 @@ class Dset(Dataset):
         self.image_dir = Path(image_dir) 
         self.seq_length = seq_length
         
-        rawdata = self.extract_data()
+        if 'rawdata.csv' not in os.listdir(data_dir):
+            rawdata = self.extract_data()
+            rawdata.to_csv(os.path.join(data_dir,'rawdata.csv'),index=False)
+        else:
+            rawdata = pd.read_csv(data_dir/'rawdata.csv')
+
+
         if self.split == 'train':
             self.df = pd.DataFrame(rawdata.loc[pd.to_datetime(rawdata['Date']).dt.year <= 2014])
             
